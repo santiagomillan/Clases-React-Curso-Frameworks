@@ -1,32 +1,33 @@
 import "./styles.css";
-import Form from "./form";
+import Form from "./Form";
+import { Title } from "./Title";
+import { Theme } from "./Theme.js";
+import { useState } from "react";
+import React from "react";
 
 const movies = [
   {
     name: "Avengers",
-    available: 5
+    available: 5,
   },
   {
-    name: "Avengers 2",
-    available: 5
+    name: "terminator",
+    available: 5,
   },
-  {
-    name: "Avengers 3",
-    available: 5
-  },
-  {
-    name: "Avengers 4",
-    available: 5
-  }
 ];
 
 export default function App() {
+  const [theme, setTheme] = useState("avengers");
+
   return (
-    <div>
-      <h2>Peliculas</h2>
+    <Theme theme={theme}>
+      <Title>Peliculas</Title>
       {movies.map((movie) => (
-        <Form movie={movie} />
+        <Form
+          movie={movie}
+          updateTheme={() => setTheme(movie.name.toLowerCase())}
+        />
       ))}
-    </div>
+    </Theme>
   );
 }
